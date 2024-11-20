@@ -42,8 +42,74 @@ public class Turtle implements Runnable, ActionListener, MouseListener, MouseMot
     public static void main(String[] a)
     {
         Turtle bob = new Turtle();
-        //***************lab 1.1 Inclass
-        bob.width(5);
+        bob.speed(1);
+        //***************lab 1.2 Homework *****
+        bob.up();
+        bob.right(90);
+        bob.forward(100);
+        bob.left(90);
+        bob.down();
+        int angle = 30, angle_max = angle*3;
+        int thickness = 4;
+        bob.left(angle);
+        int round_S = 0;// S = Small
+        while(round_S < 2){//draw candle flame from right to left
+            if(round_S == 0) {
+                bob.penColor("red");//middle flame
+                bob.width(thickness+6);
+                bob.dot();
+            }
+                bob.penColor("orange");
+                bob.width(thickness+4);
+            bob.penColor("orange");
+            for (int j = 0 ; j < angle_max; j++) { //round_S = 0 == right
+                bob.forward(1);            //round_S = 1 == left
+                bob.left(1);
+                if(j == 89) bob.left(j++);
+            }
+            round_S ++;
+        }
+        bob.right(angle*2); // adjust angle, position to draw frame
+        bob.up();
+        bob.right(angle_max*2);
+        bob.forward(70);
+        bob.right(angle_max*2.5);
+        bob.down();
+        int round_B = 0; // B = Big
+        for(int i =0; i < 2; i++) {
+            while (round_B < 2) {//draw frame circle from right to left
+                if (round_B == 1 && i == 0) bob.width(thickness-1);
+                else bob.width(thickness + 2);
+                bob.penColor("brown");
+                for (int j = 0; j < angle_max; j++) {
+                    bob.forward(2);
+                    bob.left(1);
+                    if (j == 89) bob.left(j++);
+                }
+                round_B++;
+            }
+            if (i == 0) { // move to the upper after finish lower circle
+                bob.width(thickness + 2); //i = 0 == lower circle
+                bob.left(angle_max + 60);   // i = 1 == upper circle
+                bob.forward(175);
+                round_B = 0;
+                bob.right(angle_max + 60);
+            }
+        }
+        bob.left(angle+15);
+        bob.up();
+        bob.forward(165);
+        bob.right(angle+45);
+        bob.width(thickness + 2);
+        bob.down();
+        bob.forward(175);
+        bob.up();
+
+        bob.home();
+        //***************lab 1.2 Homework *****
+
+        //***************lab 1.1 Inclass *****
+        /*bob.width(5);
         bob.up();
         bob.backward(100);
         bob.down();
@@ -63,7 +129,7 @@ public class Turtle implements Runnable, ActionListener, MouseListener, MouseMot
             bob.left(120);
         }
         //***************lab 1.1 Inclass *****
-
+        */
 
         /*bob.penColor("blue");
         bob.width(5);
